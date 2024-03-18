@@ -19,7 +19,7 @@
 
       <!-- grid top headline -->
       <div class="grid grid-cols-1 md:grid-cols-3" *ngIf="!loading">
-        <ng-container *ngFor="let item of news; let isFirst = first">
+        <ng-container *ngFor="let item of groupedData[0]; let isFirst = first">
           <div (click)="toUrl(item.url)"
             class="bg-[#F6E7D8] rounded-sm shadow-sm min-h-[150px] relative hover:shadow-lg  hover:bg-yellow-200 cursor-pointer m-1"
             [ngClass]="{'md:col-span-2 md:row-span-2': isFirst}">
@@ -28,7 +28,7 @@
                 cutString(item.title, 55) }}
               </h4>
               <div class="absolute bottom-2 left-0 w-full flex justify-between px-4 text-slate-800">
-                <span>{{ item.author }}</span>
+                <span>{{ item.by }}</span>
                 <span>{{ returnDate(item.publishedAt) }}</span>
               </div>
             </ng-container>
@@ -37,7 +37,7 @@
                 cutString(item.title, 30) }}
               </h4>
               <div class="absolute bottom-2 left-0 w-full flex justify-between px-4 text-slate-800">
-                <span class="text-sm">{{ item.author }}</span>
+                <span class="text-sm">{{ item.by }}</span>
                 <span class="text-sm">{{ returnDate(item.publishedAt) }}</span>
               </div>
             </ng-container>
@@ -61,13 +61,13 @@
       </ng-container>
 
       <ng-container *ngIf="!loading">
-        <div class="flex items-center mb-4 px-4 hover:border-2" *ngFor="let item of newsBitcoin">
+        <div class="flex items-center mb-4 px-4 hover:border-2" *ngFor="let item of groupedData[1]">
           <div class="mr-4">
-            <img [src]="item.urlToImage" alt="Gambar" class="w-16 h-16 object-cover rounded-md">
+            <img src="./assets/img/dummy.jpg" alt="Gambar" class="w-16 h-16 object-cover rounded-md">
           </div>
           <div>
-            <h2 class="text-lg font-semibold text-slate-700">{{ cutString(item.description, 30) }}</h2>
-            <p class="text-slate-700">{{ item.author }} - {{ item.source.name }}</p>
+            <h2 class="text-lg font-semibold text-slate-700">{{ cutString(item.title, 30) }}</h2>
+            <p class="text-slate-700">{{ item.by }} - {{ item.type }}</p>
           </div>
         </div>
       </ng-container>
@@ -90,7 +90,7 @@
       </ng-container>
 
       <div class="grid grid-cols-1 md:grid-cols-3" *ngIf="!loading">
-        <ng-container *ngFor="let item of news; let isFirst = first">
+        <ng-container *ngFor="let item of groupedData[2]; let isFirst = first">
           <div (click)="toUrl(item.url)"
             class="bg-[#F6E7D8] rounded-sm shadow-sm min-h-[150px] relative hover:shadow-lg  hover:bg-yellow-200 cursor-pointer m-1"
             [ngClass]="{'md:col-span-2 md:row-span-2': isFirst}">
@@ -99,7 +99,7 @@
                 cutString(item.title, 55) }}
               </h4>
               <div class="absolute bottom-2 left-0 w-full flex justify-between px-4 text-slate-800">
-                <span>{{ item.author }}</span>
+                <span>{{ item.by }}</span>
                 <span>{{ returnDate(item.publishedAt) }}</span>
               </div>
             </ng-container>
@@ -108,7 +108,7 @@
                 cutString(item.title, 30) }}
               </h4>
               <div class="absolute bottom-2 left-0 w-full flex justify-between px-4 text-slate-800">
-                <span class="text-sm">{{ item.author }}</span>
+                <span class="text-sm">{{ item.by }}</span>
                 <span class="text-sm">{{ returnDate(item.publishedAt) }}</span>
               </div>
             </ng-container>
@@ -134,9 +134,9 @@
         <div class="container mx-auto mt-4 grid grid-cols-2">
           <div (click)="toUrl(item.url)"
             class="bg-[#F6E7D8] rounded-sm shadow-sm min-h-[150px] relative hover:shadow-lg  hover:bg-yellow-200 cursor-pointer m-1"
-            *ngFor="let item of newsSources">
+            *ngFor="let item of groupedData[3]">
             <div class="absolute bottom-2 left-0 w-full flex justify-between px-4 text-slate-800">
-              <span class="text-sm">{{ item.name }}</span>
+              <span class="text-sm">{{ item.by }}</span>
               <span class="text-sm">{{ item.category }}</span>
             </div>
           </div>
