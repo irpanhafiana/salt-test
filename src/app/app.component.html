@@ -1,0 +1,149 @@
+<app-navbar></app-navbar>
+
+<div class="container mx-auto px-4 md:px-8 lg:px-16 mt-4">
+  <div class="flex flex-col md:flex-row gap-x-9">
+    <div class="w-full md:w-3/5">
+      <div class="flex justify-between w-full mb-5">
+        <h1 class="font-bold text-2xl md:text-3xl text-slate-700">Top Headline News</h1>
+        <p class="flex text-sm items-center text-slate-700 cursor-pointer">Browse all news</p>
+      </div>
+
+      <!-- loader -->
+      <ng-container *ngIf="loading">
+        <div class="flex justify-center">
+          <app-loader></app-loader>
+        </div>
+      </ng-container>
+      <!-- loader end -->
+
+
+      <!-- grid top headline -->
+      <div class="grid grid-cols-1 md:grid-cols-3" *ngIf="!loading">
+        <ng-container *ngFor="let item of news; let isFirst = first">
+          <div (click)="toUrl(item.url)"
+            class="bg-[#F6E7D8] rounded-sm shadow-sm min-h-[150px] relative hover:shadow-lg  hover:bg-yellow-200 cursor-pointer m-1"
+            [ngClass]="{'md:col-span-2 md:row-span-2': isFirst}">
+            <ng-container *ngIf="isFirst">
+              <h4 class="text-sm md:text-2xl font-semibold text-slate-800 absolute bottom-10 left-0 w-full px-4">{{
+                cutString(item.title, 55) }}
+              </h4>
+              <div class="absolute bottom-2 left-0 w-full flex justify-between px-4 text-slate-800">
+                <span>{{ item.author }}</span>
+                <span>{{ returnDate(item.publishedAt) }}</span>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!isFirst">
+              <h4 class="text-sm font-semibold text-slate-800 absolute bottom-10 left-0 w-full px-4">{{
+                cutString(item.title, 30) }}
+              </h4>
+              <div class="absolute bottom-2 left-0 w-full flex justify-between px-4 text-slate-800">
+                <span class="text-sm">{{ item.author }}</span>
+                <span class="text-sm">{{ returnDate(item.publishedAt) }}</span>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+      <!-- grid top headline end-->
+    </div>
+
+    <div class="w-full md:w-2/5">
+      <div class="flex justify-between w-full mb-5 border-b-2">
+        <h1 class="font-bold text-2xl md:text-3xl text-slate-700 pb-3 mt-5 md:mt-0">Bitcoin Corner</h1>
+        <p class="flex text-sm items-center text-slate-700">Browse all news</p>
+      </div>
+
+      <ng-container *ngIf="loading">
+        <div class="flex justify-center">
+          <app-loader></app-loader>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="!loading">
+        <div class="flex items-center mb-4 px-4 hover:border-2" *ngFor="let item of newsBitcoin">
+          <div class="mr-4">
+            <img [src]="item.urlToImage" alt="Gambar" class="w-16 h-16 object-cover rounded-md">
+          </div>
+          <div>
+            <h2 class="text-lg font-semibold text-slate-700">{{ cutString(item.description, 30) }}</h2>
+            <p class="text-slate-700">{{ item.author }} - {{ item.source.name }}</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="container mx-auto px-4 md:px-8 lg:px-16 mt-4">
+  <div class="flex flex-col md:flex-row gap-x-9">
+    <div class="w-full md:w-3/5">
+      <div class="flex justify-between w-full mb-5">
+        <h1 class="font-bold text-2xl md:text-3xl text-slate-700">People</h1>
+        <p class="flex text-sm items-center text-slate-700 cursor-pointer">Find all people</p>
+      </div>
+
+      <ng-container *ngIf="loading">
+        <div class="flex justify-center">
+          <app-loader></app-loader>
+        </div>
+      </ng-container>
+
+      <div class="grid grid-cols-1 md:grid-cols-3" *ngIf="!loading">
+        <ng-container *ngFor="let item of news; let isFirst = first">
+          <div (click)="toUrl(item.url)"
+            class="bg-[#F6E7D8] rounded-sm shadow-sm min-h-[150px] relative hover:shadow-lg  hover:bg-yellow-200 cursor-pointer m-1"
+            [ngClass]="{'md:col-span-2 md:row-span-2': isFirst}">
+            <ng-container *ngIf="isFirst">
+              <h4 class="text-sm md:text-2xl font-semibold text-slate-800 absolute bottom-10 left-0 w-full px-4">{{
+                cutString(item.title, 55) }}
+              </h4>
+              <div class="absolute bottom-2 left-0 w-full flex justify-between px-4 text-slate-800">
+                <span>{{ item.author }}</span>
+                <span>{{ returnDate(item.publishedAt) }}</span>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!isFirst">
+              <h4 class="text-sm font-semibold text-slate-800 absolute bottom-10 left-0 w-full px-4">{{
+                cutString(item.title, 30) }}
+              </h4>
+              <div class="absolute bottom-2 left-0 w-full flex justify-between px-4 text-slate-800">
+                <span class="text-sm">{{ item.author }}</span>
+                <span class="text-sm">{{ returnDate(item.publishedAt) }}</span>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+    <div class="w-full md:w-2/5">
+      <div class="flex justify-between w-full mb-5 border-b-2 mt-5 md:mt-0">
+        <h1 class="font-bold text-2xl md:text-3xl text-slate-700 pb-3">Channels</h1>
+        <p class="flex text-sm items-center text-slate-700">Browse all channels</p>
+      </div>
+
+      <ng-container *ngIf="loading">
+        <div class="flex justify-center">
+          <app-loader></app-loader>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="!loading">
+        <div class="container mx-auto mt-4 grid grid-cols-2">
+          <div (click)="toUrl(item.url)"
+            class="bg-[#F6E7D8] rounded-sm shadow-sm min-h-[150px] relative hover:shadow-lg  hover:bg-yellow-200 cursor-pointer m-1"
+            *ngFor="let item of newsSources">
+            <div class="absolute bottom-2 left-0 w-full flex justify-between px-4 text-slate-800">
+              <span class="text-sm">{{ item.name }}</span>
+              <span class="text-sm">{{ item.category }}</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

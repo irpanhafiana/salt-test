@@ -1,0 +1,21 @@
+.nav-link {
+  flex: 1;
+  text-align: center;
+  padding: 8px 0;
+  color: #fbbf24;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #f59e0b;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    flex-basis: 50%;
+  }
+}
